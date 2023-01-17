@@ -13,21 +13,8 @@ const TodoCreationForm = () => {
 
     const new_data = { title, description, completed }
 
-    // const CreateTodo = (event) => {
-    //     event.preventDefault();
-    //     console.log(111, new_data)
-    //     api.post("/", new_data
-    //     ).then((response) => {
-    //         settitle("");
-    //         setdescription("");
-    //         setCompleted(false);
-    //         navigate('/')
-    //     }).catch((error) => {
-    //         console.log(error)
-    //     })
-    // };
     
-    const[ApiData, setApiData] = useState([])
+    const[apiData, setApiData] = useState([])
     useEffect(() => {
         getSingleTodo();
     }, []);
@@ -43,7 +30,6 @@ const TodoCreationForm = () => {
             console.log(error)
         }
     };
-    console.log(111,id)
 
 
     const CreateAndUpdateTodo = (event) => {
@@ -87,7 +73,7 @@ const TodoCreationForm = () => {
                 </div>
                 <div className="flex items-start mb-6">
                     <div className="flex items-center h-5">
-                        <input id="remember" type="checkbox" value={completed} className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:outline-none" onClick={(e) => setCompleted(e.target.checked)} />
+                        <input id="completed" type="checkbox" value={completed} className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:outline-none" onClick={(e) => setCompleted(e.target.checked)} />
                     </div>
                     <label className="ml-2 text-sm font-medium text-gray-900 ">Completed</label>
                 </div>

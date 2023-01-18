@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .tableHeadStyle {
+    @apply p-3 font-semibold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell;
+  }
+  .mobileViewTableHeadingStyle {
+    @apply lg:hidden absolute top-0 left-0 bg-blue-200 px-3 py-1 text-xs font-bold uppercase;
+  }
+}

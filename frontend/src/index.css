@@ -6,7 +6,11 @@
   .tableHeadStyle {
     @apply p-3 font-semibold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell;
   }
-  .mobileViewTableHeadingStyle {
+  .mobile-view-table-heading-style {
     @apply lg:hidden absolute top-0 left-0 bg-blue-200 px-3 py-1 text-xs font-bold uppercase;
   }
+  .each-table-cell-style {
+    @apply w-full lg:w-auto px-5 py-6 lg:py-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static;
+  }
 }
+

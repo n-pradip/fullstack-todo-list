@@ -9,9 +9,9 @@ const TodoCreationForm = () => {
     const navigate = useNavigate();
     const [title, settitle] = useState("");
     const [description, setdescription] = useState("")
-    const [completed, setCompleted] = useState(false)
+    const [status, setStatus] = useState(false)
 
-    const new_data = { title, description, completed }
+    const new_data = { title, description, status }
 
     
     const[apiData, setApiData] = useState([])
@@ -24,7 +24,8 @@ const TodoCreationForm = () => {
                 setApiData(response.data);
                 settitle(response.data.title);
                 setdescription(response.data.description);
-                setCompleted(response.data.status);
+                setStatus(response.data.status);
+                console.log("server bata aayeko status",response.data.status)
             })
         } catch (error) {
             console.log(error)
@@ -40,7 +41,7 @@ const TodoCreationForm = () => {
             ).then((response) => {
                 settitle("");
                 setdescription("");
-                setCompleted(false);
+                setStatus(false);
                 navigate('/')
             }).catch((error) => {
                 console.log(error)
@@ -50,7 +51,7 @@ const TodoCreationForm = () => {
             ).then((response) => {
                 settitle("");
                 setdescription("");
-                setCompleted(false);
+                setStatus(false);
                 navigate('/')
             }).catch((error) => {
                 console.log(error)
@@ -73,11 +74,11 @@ const TodoCreationForm = () => {
                 </div>
                 <div className="flex items-start mb-6">
                     <div className="flex items-center h-5">
-                        <input id="completed" type="checkbox" value={completed} className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:outline-none" onClick={(e) => setCompleted(e.target.checked)} />
+                        <input id="completed" type="checkbox" value={status} className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:outline-none" onClick={(e) => setStatus(e.target.checked)} />
                     </div>
                     <label className="ml-2 text-sm font-medium text-gray-900 ">Completed</label>
                 </div>
-                <button className="focus:outline-none text-white bg-blue-500 hover:bg-blue-600 font-medium rounded text-sm px-5 py-1.5 mr-2 mb-2">Submit</button>
+                <button type='submit' className="focus:outline-none text-white bg-blue-500 hover:bg-blue-600 font-medium rounded text-sm px-5 py-1.5 mr-2 mb-2">Submit</button>
                 
             </form>
 

@@ -13,19 +13,16 @@ const TodoCreationForm = () => {
 
     const new_data = { title, description, status }
 
-    
-    const[apiData, setApiData] = useState([])
     useEffect(() => {
         getSingleTodo();
     }, []);
+
     const getSingleTodo = () => {
         try {
             api.get(url).then((response) => {
-                setApiData(response.data);
                 settitle(response.data.title);
                 setdescription(response.data.description);
                 setStatus(response.data.status);
-                console.log("server bata aayeko status",response.data.status)
             })
         } catch (error) {
             console.log(error)
@@ -33,10 +30,9 @@ const TodoCreationForm = () => {
     };
 
 
-    const CreateAndUpdateTodo = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(111, new_data)
-        if(id===undefined){
+        if (id === undefined) {
             api.post("/", new_data
             ).then((response) => {
                 settitle("");
@@ -46,12 +42,12 @@ const TodoCreationForm = () => {
             }).catch((error) => {
                 console.log(error)
             })
-        }else{
+        } else {
             api.put(url, new_data
             ).then((response) => {
-                settitle("");
-                setdescription("");
-                setStatus(false);
+                // settitle("");
+                // setdescription("");
+                // setStatus();
                 navigate('/')
             }).catch((error) => {
                 console.log(error)
@@ -63,7 +59,7 @@ const TodoCreationForm = () => {
     return (
         <div className="container mx-auto">
             <p className='text-center text-2xl font-bold text-balck my-5'>Todo Item</p>
-            <form className='px-10' onSubmit={CreateAndUpdateTodo} >
+            <form className='px-10' onSubmit={handleSubmit} >
                 <div className="mb-6">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Title</label>
                     <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:outline-none block w-full p-2.5" value={title} onChange={(e) => settitle(e.target.value)} />
@@ -74,12 +70,12 @@ const TodoCreationForm = () => {
                 </div>
                 <div className="flex items-start mb-6">
                     <div className="flex items-center h-5">
-                        <input id="completed" type="checkbox" value={status} className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:outline-none" onClick={(e) => setStatus(e.target.checked)} />
+                        <input id="completed" type="checkbox" checked={status} className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:outline-none" onChange={(e) => setStatus(e.target.checked)} />
                     </div>
                     <label className="ml-2 text-sm font-medium text-gray-900 ">Completed</label>
                 </div>
                 <button type='submit' className="focus:outline-none text-white bg-blue-500 hover:bg-blue-600 font-medium rounded text-sm px-5 py-1.5 mr-2 mb-2">Submit</button>
-                
+
             </form>
 
         </div>
